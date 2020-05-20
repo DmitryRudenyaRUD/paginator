@@ -1,26 +1,37 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import List from './List';
+import './Style.scss';
+import { Store, C } from './Store';
+import {observer} from "mobx-react";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+    store = new Store();
+    render() {
+        window.addEventListener('resize',() => {
+            setTimeout(() => this.store.resize(), 50)
+        });
+        return (
+            <div className='App'>
+                <div className='header'>
+                    <a
+                        href='#'
+                        className='toggle backward'
+                        onClick={() => this.store.toggle(C.BACKWARD)}
+                    >{'<'}</a>
+                    <List
+                        list={this.store.list}
+                        view={this.store.view}
+                        select={this.store.select}
+                    />
+                    <a
+                        href='#'
+                        className='toggle forward'
+                        onClick={() => this.store.toggle(C.FORWARD)}
+                    >{'>'}</a>
+                </div>
+            </div>
+        );
+    }
 }
 
-export default App;
+export default observer(App);

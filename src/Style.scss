@@ -1,0 +1,68 @@
+* {
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  text-decoration: none;
+  font-weight: bold;
+  font-family: Helvetica;
+}
+$text: #00c0c0;
+$background: rgb(0, 0, 55);
+.App {
+  padding: calc((100vh - 4rem) / 2) 0;
+  background-color: black;
+}
+.header {
+  min-width: 20rem;
+  display: flex;
+  justify-content: space-between ;
+  align-items: center;
+  padding: 0.5rem 0;
+  margin: 0 auto;
+  width: 50%;
+  height: 3rem;
+  background-color: rgb(0, 0, 80);
+}
+.toggle {
+  display: block;
+  position: relative;
+  font-size: 3rem;
+  padding: 0 0.75rem;
+  color: $text;
+  background-color: $background;
+  box-shadow: 0 0 0.5rem 0;
+  line-height: 3rem;
+  border: 0.2rem solid $text;
+  border-radius: 2rem;
+}
+.forward {
+  right: 1rem
+}
+.backward {
+  left: 1rem
+}
+.list {
+  display: flex;
+  justify-content: space-between ;
+  box-sizing: border-box;
+}
+%for-item {
+  font-weight: bold;
+  display: block;
+  padding: 1rem;
+  margin: 0.5rem;
+  border: 0.2rem solid $text;
+  border-radius: 2rem;
+}
+.item {
+  @extend %for-item;
+  color: $text;
+  background-color: $background;
+  box-shadow: 0 0 0.5rem 0;
+}
+.item__action {
+  @extend %for-item;
+  color: #000000;
+  background-color: rgb(238, 224, 0);
+  box-shadow:inset 0 0 0.2rem 0.2rem $background;
+}
